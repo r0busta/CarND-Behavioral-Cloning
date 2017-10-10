@@ -12,16 +12,11 @@ def flip_img(img):
     return np.fliplr(img)
 
 
-def to_gray(img):
-    return np.expand_dims(np.dot(img, [0.299, 0.587, 0.114]), axis=4)
-
-
-def mean_normalize(img):
-    return (img - 128)/128
-
-
 def normalize(img):
-    return mean_normalize(to_gray(img))
+    """
+    For the implemented model, normalization is not required. Keeping this function empty.
+    """
+    return img
 
 
 def plot_images(images):

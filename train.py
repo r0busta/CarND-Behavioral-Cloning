@@ -4,7 +4,7 @@ import csv
 from scipy import ndimage
 import numpy as np
 from keras.models import Sequential, load_model
-from keras.layers import Flatten, Dense, Conv2D, Cropping2D
+from keras.layers import Flatten, Dense, Conv2D, Cropping2D, Lambda
 from sklearn.utils import shuffle
 from utils import get_img_path, flip_img, normalize, plot_images
 
@@ -32,9 +32,9 @@ def load_samples(samples):
         steering_right = steering_center - correction
 
         # read in images from center, left and right cameras
-        img_center = ndimage.imread(get_img_path(IMG_FOLDER, sample[0]))
-        img_left = ndimage.imread(get_img_path(IMG_FOLDER, sample[1]))
-        img_right = ndimage.imread(get_img_path(IMG_FOLDER, sample[2]))
+        img_center = normalize(ndimage.imread(get_img_path(IMG_FOLDER, sample[0])))
+        img_left = normalize(ndimage.imread(get_img_path(IMG_FOLDER, sample[1])))
+        img_right = normalize(ndimage.imread(get_img_path(IMG_FOLDER, sample[2])))
 
         # add images and angles to data set
         images.extend([img_center, img_left, img_right])
@@ -53,7 +53,8 @@ def train(X_train, y_train):
     else:
         model = Sequential()
 
-        model.add(Cropping2D(cropping=((70, 25), (0, 0)), input_shape=(160, 320, 1)))
+        model.add(Cropping2D(cropping=((70, 25), (0, 0)), input_shape=(160, 320, 3)))
+        model.add(Lambda(lambda x: (x / 255.0) - 0.5))
         model.add(Conv2D(24, (5, 5), strides=(2, 2), activation='relu'))
         model.add(Conv2D(36, (5, 5), strides=(2, 2), activation='relu'))
         model.add(Conv2D(48, (5, 5), strides=(2, 2), activation='relu'))
@@ -66,7 +67,7 @@ def train(X_train, y_train):
         model.add(Dense(1))
 
     model.compile(loss='mse', optimizer='adam')
-    model.fit(X_train, y_train, validation_split=0.2, shuffle=True, epochs=10)
+    model.fit(X_train, y_train, shuffle=True, epochs=10)
 
     model.save('model.h5')
 
@@ -103,11 +104,11 @@ if __name__ == '__main__':
     for offset in range(0, num_samples, BATCH_SIZE):
         end = offset+BATCH_SIZE
         print("Running training step {} from {}".format(int(offset/BATCH_SIZE) + 1, STEPS))
-        print("Simulator samples {} - {} from {} in total".format(offset, end, num_samples))
+        print("Simulator samples {} - {} from {}".format(offset, end, num_samples))
 
         images, steering_angles = load_samples(samples[offset:end])
 
-        X_train = normalize(np.array(images))
+        X_train = np.array(images)
         y_train = np.array(steering_angles)
         X_train, y_train = shuffle(X_train, y_train)
 
