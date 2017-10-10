@@ -40,7 +40,7 @@ def load_samples(samples):
         images.extend([img_center, img_left, img_right])
         steering_angles.extend([steering_center, steering_left, steering_right])
 
-        # add flipped version of the data point
+        # add flipped version of the sample
         images.extend([flip_img(img_center), flip_img(img_left), flip_img(img_right)])
         steering_angles.extend([-steering_center, -steering_left, -steering_right])
 
