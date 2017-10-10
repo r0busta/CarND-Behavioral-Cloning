@@ -3,5 +3,6 @@ Behavioural Cloning Project (Udacity CarND)
 
 # Credits
 
-Thanks Udacity for providing
-* Autonomous car simulator
+* The project uses the CNN model proposed by NVIDIA in https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
+
+* Thanks Udacity for providing self-driving car simulator
