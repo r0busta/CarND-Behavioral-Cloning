@@ -33,6 +33,7 @@ My project includes the following files:
 * model.h5 containing a trained convolution neural network 
 * WRITEUP.md summarizing the results
 * video.mp4 a video recording of the vehicle driving autonomously
+* 2nd_track_video.mp4 a drive on the 2nd track
 
 #### 2. Submission includes functional code
 
@@ -83,13 +84,13 @@ In order to gauge how well the model was working, I split my image and steering 
 
 To combat the overfitting, I decided to augment train data set. For augmenting data, I took images from all 3 cameras and added a flipped version for each image.
 
-Then, after re-training LeNet with augmented data set, the car drove better, but was not able to drive through sharp corners. I concluded that LeNet is too simple to learn all important features of the track and I decided to try more sophisticated model, as one proposed by NVIDIA for their autonomous driving projects.  
+Then, after re-training LeNet with augmented data set, the car drove better but was not able to drive through sharp corners. I concluded that LeNet is too simple to learn all important features of the track and I decided to try the more sophisticated model, as one proposed by NVIDIA for their autonomous driving projects.  
 
 The final step was to train chosen architecture with augmented data set and run the simulator to see how well the car was driving around track one.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-As a extra exercise, I tried to train model on the full set (without splitting data into train and validation sets) and gave it a try on the second track. The car was able to go through that track as well.
+As an extra exercise, I tried to train the model on the full set (without splitting data into train and validation sets) and gave it a try on the second track. The car was able to go through that track as well.
 
 #### 2. Final Model Architecture
 
@@ -117,6 +118,6 @@ I used this training data for training the model. The validation set helped dete
 
 ### Extras
 
-#### Driving the 2nd track
+#### Driving on the 2nd track
 
 The trained model was able to drive the vehicle on the 2nd track as well. A video demonstrating that can be found in 2nd_track_video.mp4 or at https://youtu.be/oE6o5JIf6zs
