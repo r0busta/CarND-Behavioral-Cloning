@@ -28,7 +28,7 @@ Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/4
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* train.py containing the script to create and train the model
+* model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
 * WRITEUP.md summarizing the results
@@ -45,7 +45,7 @@ python drive.py model.h5
 
 #### 3. Submission code is usable and readable
 
-The train.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
+The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ### Model Architecture and Training Strategy
 
@@ -53,7 +53,7 @@ The train.py file contains the code for training and saving the convolution neur
 
 The project uses a CNN model proposed by NVIDIA in https://devblogs.nvidia.com/parallelforall/deep-learning-self-driving-cars/
 
-It consists of a convolution neural network with 5x5 and 3x3 filters and depths between 24 and 64 (train.py lines 58-62) 
+It consists of a convolution neural network with 5x5 and 3x3 filters and depths between 24 and 64 (model.py lines 58-62) 
 
 Convolution layers use RELU as activation function to introduce nonlinearity and the data is normalized in the model using a Keras lambda layer (code line 57). 
 
@@ -63,7 +63,7 @@ The training harness allows loading of multiple simulator logs model so that it 
 
 #### 3. Model parameter tuning
 
-The model uses an adam optimizer, so the learning rate is not tuned manually (train.py line 69).
+The model uses an adam optimizer, so the learning rate is not tuned manually (model.py line 69).
 
 #### 4. Appropriate training data
 
@@ -94,7 +94,7 @@ As an extra exercise, I tried to train the model on the full set (without splitt
 
 #### 2. Final Model Architecture
 
-Here is a visualization of the architecture (train.py lines 58-67)
+Here is a visualization of the architecture (model.py lines 58-67)
 
 ![alt text][image1]
 
