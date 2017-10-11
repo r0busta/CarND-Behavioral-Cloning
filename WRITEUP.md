@@ -114,3 +114,9 @@ To augment the data sat, I also flipped images and angles thinking that this wou
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as evidenced by my experiments. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+### Extras
+
+#### Driving the 2nd track
+
+The trained model was able to drive the vehicle on the 2nd track as well. A video demonstrating that can be found in 2nd_track_video.mp4 or at https://youtu.be/oE6o5JIf6zs
